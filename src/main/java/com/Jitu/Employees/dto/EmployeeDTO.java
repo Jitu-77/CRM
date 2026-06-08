@@ -3,6 +3,7 @@ package com.Jitu.Employees.dto;
 import java.time.LocalDate;
 
 
+import com.Jitu.Employees.annotations.EmployeePrimeAgeValidation;
 import com.Jitu.Employees.annotations.EmployeeRoleValidation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,6 +37,7 @@ public class EmployeeDTO {
     @NotNull(message = "Age of the employee cannot be blank")
     @Max(value = 80, message = "Age of Employee cannot be greater than 80")
     @Min(value = 18, message = "Age of Employee cannot be less than 18")
+    @EmployeePrimeAgeValidation
     private Integer age;
     
     @NotNull(message = "Salary of Employee should be not null")
