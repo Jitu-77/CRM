@@ -3,6 +3,7 @@ package com.Jitu.Employees.dto;
 import java.time.LocalDate;
 
 
+import com.Jitu.Employees.annotations.EmployeeRoleValidation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.*;
@@ -27,6 +28,8 @@ public class EmployeeDTO {
     private String email;
 
     @NotBlank(message = "Role of the employee cannot be blank")
+//    @Pattern(regexp = "^(ADMIN|USER)$",message = "Role of the employee can be ADMIN/USER")
+    @EmployeeRoleValidation
     private String role;
 
     
