@@ -2,8 +2,10 @@ package com.Jitu.Employees.controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import com.Jitu.Employees.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +43,9 @@ public class EmployeeController {
    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable(name = "employeeId") Long employeeId) {
        Optional <EmployeeDTO> employeeDTO = employeeService.getEmployeeById(employeeId);
        return employeeDTO.map(employeeData -> ResponseEntity.ok(employeeData)).
-       orElse(ResponseEntity.notFound().build());
+//       orElse(ResponseEntity.notFound().build()); //no expcetion thrown
+//       orElseThrow(()->new NoSuchElementException("Employee not found")); // using exception
+       orElseThrow(()->new ResourceNotFoundException("Employee not found")); //using custom exceptions
    }
 
     @GetMapping
